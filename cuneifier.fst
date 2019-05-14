@@ -1,8 +1,16 @@
-
-
-# Taken from https://github.com/movie138music/foma-doublets
-define ToUppercase [[a:"A"] | [b:"B"] | [c:"C"] | [d:"D"] | [e:"E"] | [f:"F"] | [g:"G"] | [h:"H"] | [i:"I"] | [j:"J"] | [k:"K"] | [l:"L"] | [m:"M"] | [n:"N"] | [o:"O"] | [p:"P"] | [q:"Q"] | [r:"R"] | [s:"S"] | [t:"T"] | [u:"U"] | [v:"V"] | [w:"W"] | [x:"X"] | [y:"Y"] | [z:"Z"]];
-
+# Copyright 2019 Wincent Balin
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 define MESZL10 [A N] : 𒀭;
 define MESZL14 [B A] : 𒁀;
@@ -89,7 +97,6 @@ define MESZL856 [H A] : 𒄩;
 define MESZL891 [G U] : 𒄖;
 define MESZL899 [E L] : 𒂖;
 
-
 define CuneiformTranslation [MESZL10|MESZL14|MESZL15|MESZL16|MESZL24|MESZL85|MESZL86|MESZL89|MESZL98|MESZL99|
                              MESZL110|MESZL111|MESZL112|MESZL113|MESZL118|MESZL127|MESZL132|MESZL136|MESZL140|MESZL141|MESZL142|MESZL164|MESZL172|MESZL181|
                              MESZL223|MESZL238|MESZL248|MESZL252|MESZL258|MESZL261|MESZL296|
@@ -99,6 +106,9 @@ define CuneiformTranslation [MESZL10|MESZL14|MESZL15|MESZL16|MESZL24|MESZL85|MES
                              MESZL631|MESZL636|MESZL641|MESZL661|MESZL681|MESZL698|
                              MESZL726|MESZL736|MESZL737|MESZL753|
                              MESZL807|MESZL808|MESZL812|MESZL815|MESZL828|MESZL839|MESZL851|MESZL856|MESZL891|MESZL899];
+
+# Taken from https://github.com/movie138music/foma-doublets
+define ToUppercase [[a:"A"] | [b:"B"] | [c:"C"] | [d:"D"] | [e:"E"] | [f:"F"] | [g:"G"] | [h:"H"] | [i:"I"] | [j:"J"] | [k:"K"] | [l:"L"] | [m:"M"] | [n:"N"] | [o:"O"] | [p:"P"] | [q:"Q"] | [r:"R"] | [s:"S"] | [t:"T"] | [u:"U"] | [v:"V"] | [w:"W"] | [x:"X"] | [y:"Y"] | [z:"Z"]];
 
 define CuneiformCharacter [ToUppercase|~ToUppercase]+ .o. CuneiformTranslation;
 define CuneiformWord CuneiformCharacter ["-":0 CuneiformCharacter]*;
