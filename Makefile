@@ -8,6 +8,9 @@ clean:
 
 diagram: cuneifier.png
 
+test: cuneifier.fst
+	flookup -x -i $<
+
 %.fst: %.foma
 	foma -l $< $(FOMA_OPTIONS) -e "save stack $@" -e quit
 
