@@ -102,6 +102,6 @@ define CuneiformTranslation [MESZL10|MESZL14|MESZL15|MESZL16|MESZL24|MESZL85|MES
 
 define CuneiformCharacter [ToUppercase|~ToUppercase]+ .o. CuneiformTranslation;
 define CuneiformWord CuneiformCharacter ["-":0 CuneiformCharacter]*;
-define Cuneify CuneiformWord [" " CuneiformWord]*;
+define Cuneify CuneiformWord [" "+ CuneiformWord]*;
 
 regex Cuneify;
