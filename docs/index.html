@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cuneiform book cuneifier in Foma</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <a href="https://github.com/wincentbalin/cuneiform-book-cuneifier-foma"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+            <h1 class="display-4"><b>cuneiform</b> book cuneifier</h1>
+            <p class="lead">This is a simple cuneifier, based upon the table on pages 102 and 103 in the <a href="https://www.britishmuseumshoponline.org/cuneiform.html"><b>cuneiform</b> book</a>. Technically, it was written in <a href="https://github.com/mhulden/foma">Foma</a> (there is also <a href="https://wincentbalin.github.io/cuneiform-book-cuneifier/">another implementation</a>, written in <a href="http://www.opengrm.org/twiki/bin/view/GRM/Thrax">OpenGRM Thrax</a>).</p>
+            <p class="lead">Type syllables, divided by a dash. Divide words with a space. Case of letters is not important. Possible syllables are combinations from consonants <i>b</i>, <i>d</i>, <i>g</i>, <i>h</i>, <i>k</i>, <i>l</i>, <i>m</i>, <i>n</i>, <i>p</i>, <i>q</i>, <i>r</i>, <i>s</i>, <i>t</i>, and <i>z</i> with vowels <i>a</i>, <i>e</i>, <i>i</i>, and <i>u</i>; single vowels are possible too.</p>
+            <p class="lead">If the cuneifier recognises your input, the corresponding cuneiform characters will appear below input line; if not, you will see <i>???</i> instead.</p>
+            <hr class="my-4">
+            <div class="row form-group">
+                <input id="cuneiformInput" class="form-control form-control-lg" type="text" placeholder="Try, for example, ta-ab-le-et" autofocus/>
+            </div>
+            <p id="cuneiformOutput" class="display-4"></p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="cuneifier1.js"></script>
+    <script src="foma_apply_down.js"></script>
+    <script>
+        $(function() {
+            var delayInterval = 1500 /* ms */,
+                input = $('#cuneiformInput'),
+                output = $('#cuneiformOutput'),
+                delay = function(callback, ms) { // SO:1909441
+                    var timer = 0;
+                    return function() {
+                        var context = this,
+                            args = arguments;
+                        clearTimeout(timer);
+                        timer = setTimeout(function() {
+                            callback.apply(context, args);
+                        }, ms || 0);
+                    };
+                };
+            
+            input.on('input', delay(function(event) {
+                var cuneified = foma_apply_down(cuneifier1, input.val());
+                output.text(cuneified.length === 0 ? '???' : cuneified.join(' '));
+            }, delayInterval));
+        });
+    </script>
+</body>
+</html>
