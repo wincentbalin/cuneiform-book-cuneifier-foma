@@ -1,3 +1,6 @@
 # Vagrant artefacts
 .vagrant/
 ubuntu-*-console.log
+
+# Resulting FST file
+cuneifier.fst
