@@ -1,7 +1,7 @@
 
 
 # Taken from https://github.com/movie138music/foma-doublets
-define ToUppercase [[a:"A"] | [b:"B"] | [c:"C"] | [d:"D"] | [e:"E"] | [f:"F"] | [g:"G"] | [h:"H"] | [i:"I"] | [j:"J"] | [k:"K"] | [l:"L"] | [m:"M"] | [n:"N"] | [o:"O"] | [p:"P"] | [q:"Q"] | [r:"R"] | [s:"S"] | [t:"T"] | [u:"U"] | [v:"V"] | [w:"W"] | [x:"X"] | [y:"Y"] | [z:"Z"]]+;
+define ToUppercase [[a:"A"] | [b:"B"] | [c:"C"] | [d:"D"] | [e:"E"] | [f:"F"] | [g:"G"] | [h:"H"] | [i:"I"] | [j:"J"] | [k:"K"] | [l:"L"] | [m:"M"] | [n:"N"] | [o:"O"] | [p:"P"] | [q:"Q"] | [r:"R"] | [s:"S"] | [t:"T"] | [u:"U"] | [v:"V"] | [w:"W"] | [x:"X"] | [y:"Y"] | [z:"Z"]];
 
 
 define MESZL10 [A N] : 𒀭;
@@ -90,17 +90,18 @@ define MESZL891 [G U] : 𒄖;
 define MESZL899 [E L] : 𒂖;
 
 
-define Character [MESZL10|MESZL14|MESZL15|MESZL16|MESZL24|MESZL85|MESZL86|MESZL89|MESZL98|MESZL99|
-                  MESZL110|MESZL111|MESZL112|MESZL113|MESZL118|MESZL127|MESZL132|MESZL136|MESZL140|MESZL141|MESZL142|MESZL164|MESZL172|MESZL181|
-                  MESZL223|MESZL238|MESZL248|MESZL252|MESZL258|MESZL261|MESZL296|
-                  MESZL309|MESZL313|MESZL339|MESZL348|MESZL350|MESZL358|MESZL380|
-                  MESZL437|MESZL464|MESZL469|MESZL474|MESZL491|MESZL498|
-                  MESZL501|MESZL504|MESZL511|MESZL552|MESZL560|MESZL561|MESZL580|MESZL583|MESZL589|MESZL596|MESZL598|
-                  MESZL631|MESZL636|MESZL641|MESZL661|MESZL681|MESZL698|
-                  MESZL726|MESZL736|MESZL737|MESZL753|
-                  MESZL807|MESZL808|MESZL812|MESZL815|MESZL828|MESZL839|MESZL851|MESZL856|MESZL891|MESZL899];
+define CuneiformTranslation [MESZL10|MESZL14|MESZL15|MESZL16|MESZL24|MESZL85|MESZL86|MESZL89|MESZL98|MESZL99|
+                             MESZL110|MESZL111|MESZL112|MESZL113|MESZL118|MESZL127|MESZL132|MESZL136|MESZL140|MESZL141|MESZL142|MESZL164|MESZL172|MESZL181|
+                             MESZL223|MESZL238|MESZL248|MESZL252|MESZL258|MESZL261|MESZL296|
+                             MESZL309|MESZL313|MESZL339|MESZL348|MESZL350|MESZL358|MESZL380|
+                             MESZL437|MESZL464|MESZL469|MESZL474|MESZL491|MESZL498|
+                             MESZL501|MESZL504|MESZL511|MESZL552|MESZL560|MESZL561|MESZL580|MESZL583|MESZL589|MESZL596|MESZL598|
+                             MESZL631|MESZL636|MESZL641|MESZL661|MESZL681|MESZL698|
+                             MESZL726|MESZL736|MESZL737|MESZL753|
+                             MESZL807|MESZL808|MESZL812|MESZL815|MESZL828|MESZL839|MESZL851|MESZL856|MESZL891|MESZL899];
 
-define Word Character ["-":0 & Character]*;
-define Cuneify Word [" " Word]*;
+define CuneiformCharacter [ToUppercase|~ToUppercase]+ .o. CuneiformTranslation;
+define CuneiformWord CuneiformCharacter ["-":0 CuneiformCharacter]*;
+define Cuneify CuneiformWord [" " CuneiformWord]*;
 
-regex [ToUppercase|~ToUppercase] .o. Cuneify;
+regex Cuneify;
