@@ -1,20 +1,20 @@
 FOMA_OPTIONS = 
 DOT_OPTIONS = 
 
-all: cuneifier.fst
+all: cuneifier.foma
 
 clean:
-	rm -f cuneifier.fst cuneifier.png
+	rm -f cuneifier.foma cuneifier.png
 
 diagram: cuneifier.png
 
-test: cuneifier.fst
+test: cuneifier.foma
 	flookup -x -i $<
 
-%.fst: %.foma
+%.foma: %.fst
 	foma -l $< $(FOMA_OPTIONS) -e "save stack $@" -e quit
 
-%.dot: %.foma
+%.dot: %.fst
 	foma -l $< $(FOMA_OPTIONS) -e "print dot > $@" -e quit
 
 %.png: %.dot

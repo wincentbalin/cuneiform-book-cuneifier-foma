@@ -3,7 +3,7 @@
 ubuntu-*-console.log
 
 # Resulting FST file
-cuneifier.fst
+cuneifier.foma
 
 # Diagram
 cuneifier.png
