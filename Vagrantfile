@@ -37,5 +37,11 @@ Vagrant.configure("2") do |config|
 
     # Install Foma
     apt-get install -y foma-bin
-    SHELL
+
+    # Install Graphviz to be able to look at diagrams
+    apt-get install -y graphviz
+
+    # Link host directory into home directory
+    ln -s /vagrant /home/vagrant/work
+SHELL
 end
