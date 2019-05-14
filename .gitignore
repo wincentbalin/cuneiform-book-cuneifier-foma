@@ -4,3 +4,8 @@ ubuntu-*-console.log
 
 # Resulting FST file
 cuneifier.fst
+
+# Diagram
+cuneifier.png
+cuneifier.dot
+
