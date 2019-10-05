@@ -9,3 +9,5 @@ cuneifier.foma
 cuneifier.png
 cuneifier.dot
 
+# Visual Studio Code
+*.code-workspace
