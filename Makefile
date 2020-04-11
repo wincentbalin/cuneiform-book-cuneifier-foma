@@ -11,7 +11,7 @@ diagram: cuneifier.png
 test: cuneifier.foma
 	flookup -x -i $<
 
-%.foma: %.fst
+%.foma: %.fomascript
 	foma -l $< $(FOMA_OPTIONS) -e "save stack $@" -e quit
 
 %.dot: %.fst
